@@ -31,7 +31,7 @@ end
 
 config.vm.define:db01 do |db01|
   db01.vm.box = "centos-6.5"
-  db01.vm.network :private_network, ip: "172.90.1.15"   
+  db01.vm.network :private_network, ip: "172.90.1.15"
 end
 
 
