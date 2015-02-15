@@ -5,35 +5,14 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-VAGRANTFILE_API_VERSION = "2"
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  
-config.vm.define:web01 do |web01|
-  web01.vm.box = "centos-6.5"
-  web01.vm.network :private_network, ip: "172.90.1.05"
-end
-
-config.vm.define:mem01 do |mem01|
-  mem01.vm.box = "centos-6.5"
-  mem01.vm.network :private_network, ip: "172.90.1.25"
-end
-
-config.vm.define:api01 do |api01|
-  api01.vm.box = "centos-6.5"
-  api01.vm.network :private_network, ip: "172.90.1.35"
-end
-
-config.vm.define:db01 do |db01|
-  db01.vm.box = "centos-6.5"
-  db01.vm.network :private_network, ip: "172.90.1.15"
-end
-
+  config.vm.box = "centos-6.5"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
