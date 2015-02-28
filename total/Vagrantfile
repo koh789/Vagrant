@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :web01 do |web01|
      web01.vm.box = "web01"
      web01.vm.network :private_network, ip: "192.168.10.10"
-
+    
   end
   
   config.vm.define :api01 do |api01|
