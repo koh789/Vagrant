@@ -1,0 +1,12 @@
+- hosts: web01
+  user: vagrant
+  sudo: yes
+  tasks:
+     - include: ../common/tasks/setup.yml
+     - name: install java1.8  
+       yum: name={{item}} state=latest
+       with_items:
+          - java-1.8.0-openjdk
+          - java-1.8.0-openjdk-devel
+     - name: install tomcat8
+       yum: name=tomcat8 state=latest
