@@ -1,0 +1,15 @@
+
+- hosts: centos
+  user: vagrant
+  sudo: yes
+  tasks: 
+     - name: yum update
+       yum: name=* state=latest
+
+     - name: wget,vim,telnetをインストール
+       yum:  name={{item}} state=latest
+       with_items: 
+          - wget
+          - vim
+          - telnet 
+
