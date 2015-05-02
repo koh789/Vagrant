@@ -1,0 +1,6 @@
+- hosts: '{{hosts}}'
+  user: '{{user}}'
+  sudo: yes
+  tasks:
+     - include: ./roles/common/tasks/setup.yml
+     - include: ./roles/web/tasks/tomcat8.yml 

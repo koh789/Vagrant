@@ -1,0 +1,3 @@
+     - name: remove mysql
+       yum: name=mysql state=remove
+
