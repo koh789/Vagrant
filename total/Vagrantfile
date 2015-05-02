@@ -6,20 +6,19 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.define :web01 do |web01|
-     web01.vm.box = "web01"
-     web01.vm.network :private_network, ip: "192.168.10.10"
-    
+  config.vm.define :web01 do |server|
+     server.vm.box = "web01"
+     server.vm.network :private_network, ip: "192.168.10.10"
   end
   
-  config.vm.define :api01 do |api01|
-     api01.vm.box = "api01"
-     api01.vm.network :private_network, ip: "192.168.10.20"
+  config.vm.define :api01 do |server|
+     server.vm.box = "api01"
+     server.vm.network :private_network, ip: "192.168.10.20"
   end
 
-  config.vm.define :mem01 do |mem01|
-     mem01.vm.box = "mem01"
-     mem01.vm.network :private_network, ip: "192.168.10.30"
+  config.vm.define :mem01 do |server|
+     server.vm.box = "mem01"
+     server.vm.network :private_network, ip: "192.168.10.30"
   end
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
