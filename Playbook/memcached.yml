@@ -1,0 +1,8 @@
+- hosts: '{{hosts}}'
+  user: '{{user}}'
+  sudo: yes
+  tasks:
+     - include: ./roles/common/tasks/setup.yml 
+     - include: ./roles/memcached/tasks/memcached.yml
+     - name: start memcached
+       

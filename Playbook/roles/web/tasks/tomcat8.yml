@@ -8,9 +8,9 @@
        action: command wget http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v8.0.20/bin/apache-tomcat-8.0.20.tar.gz
      - name: tar tomcat8
        action: command tar zxvf apache-tomcat-8.0.20.tar.gz
-     - name:  mv tomcat8 to /home/tomcat8
-       action: command mv apache-tomcat-8.0.20 /home/tomcat8
+     - name:  mv tomcat8  /usr/share/tomcat8
+       action: command sudo mv ./apache-tomcat-8.0.20 /usr/share/tomcat8
      - name:  tomcat8ユーザを追加
-       action: command useradd -M -d /home/tomcat8 tomcat8
+       action: command useradd -M -d /usr/share/tomcat8 tomcat8
      - name:  tomcat8のオーナー変更
-       action: command chown -R tomcat8. /home/tomcat8
+       action: command chown -R tomcat8. /usr/share/tomcat8
