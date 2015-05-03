@@ -18,6 +18,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         }
         ansible.inventory_path = "hosts"
       end
+     web.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
+     end
   end
   
   config.vm.define :dbm01 do |dbm|
@@ -32,5 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         }
         ansible.inventory_path = "hosts"
       end
+     dbm.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
+     end
   end
 end
