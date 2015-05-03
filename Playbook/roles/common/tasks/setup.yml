@@ -1,6 +1,4 @@
-     - name: yum update
-       yum: name=* state=latest
-
+     - include: yum.yml
      - name: wget,vim,telnetをインストール
        yum:  name={{item}} state=latest
        with_items: 

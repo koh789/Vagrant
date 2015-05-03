@@ -3,4 +3,6 @@
   sudo: yes
   tasks:
      - include: ./roles/common/tasks/setup.yml
-     - include: ./roles/web/tasks/tomcat8.yml 
+     - include: ./roles/web/tasks/tomcat8.yml
+     - name: start tomcat8
+       action: command sudo nohup /home/tomcat8/bin/catalina.sh start 

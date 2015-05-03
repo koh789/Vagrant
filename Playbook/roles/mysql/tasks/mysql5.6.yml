@@ -1,0 +1,15 @@
+- name: yumで管理しているmysql削除
+  action: command sudo yum remove -y mysql*
+- name: mysqlに関するrpmファイルをダウンロード
+  action: command wget http://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-client-5.6.20-1.el6.x86_64.rpm \ http://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-shared-compat-5.6.20-1.el6.x86_64.rpm \ http://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-server-5.6.20-1.el6.x86_64.rpm \ http://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-devel-5.6.20-1.el6.x86_64.rpm \ http://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-shared-5.6.20-1.el6.x86_64.rpm
+
+- name: ダウンロードしたmysql-rpmファイルをyumでインストール
+  yum: name={{item}} state=absent
+  with_items:
+      - MySQL-client-5.6.20-1.el6.x86_64.rpm
+      - MySQL-devel-5.6.20-1.el6.x86_64.rpm
+      - MySQL-server-5.6.20-1.el6.x86_64.rpm
+      - MySQL-shared-compat-5.6.20-1.el6.x86_64.rpm
+- name: ダウンロードしたmysql-shared.rpmファイルをyumでインストール
+  yum: name=MySQL-shared-5.6.20-1.el6.x86_64.rpm state=absent
+

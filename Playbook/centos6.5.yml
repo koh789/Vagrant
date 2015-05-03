@@ -3,4 +3,5 @@
   user: vagrant
   sudo: yes
   tasks:
+     - include: ./roles/common/tasks/yum.yml
      - include: ./roles/common/tasks/setup.yml 

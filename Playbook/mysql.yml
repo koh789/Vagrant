@@ -1,5 +1,6 @@
-- hosts: dbm01
-  user: vagrant
+- hosts: '{{hosts}}'
+  user: '{{user}}'
   sudo: yes
   tasks:
-     - include: ./roles/common/tasks/mysql5.6.yml
+     - include: ./roles/common/tasks/setup.yml
+     - include: ./roles/mysql/tasks/mysql5.6.yml
