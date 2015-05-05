@@ -1,5 +1,5 @@
 [mysqld]
-basedir = /var/lib/mysql
+basedir = /usr
 datadir = /var/lib/mysql
 port = 3306
 socket = /var/lib/mysql/mysql.sock
