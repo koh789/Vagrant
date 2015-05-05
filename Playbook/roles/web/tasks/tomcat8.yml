@@ -1,11 +1,7 @@
-     - name: install java1.8
-       yum: name={{item}} state=latest
-       with_items:
-          - java-1.8.0-openjdk
-          - java-1.8.0-openjdk-devel
+     - include: ../../common/tasks/jdk1.8.yml
 
      - name: download tomcat8
-       get_url: dest=/home/vagrant/ url=http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v8.0.20/bin/apache-tomcat-8.0.20.tar.gz
+       get_url: dest=/home/vagrant/ url=http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v8.0.21/bin/apache-tomcat-8.0.21.tar.gz
      - name: tar tomcat8
        action: command tar zxvf apache-tomcat-8.0.20.tar.gz
     
@@ -17,7 +13,12 @@
 
      - name:  mv tomcat8  /usr/share/tomcat8
        action: command  sudo mv -f /home/vagrant/apache-tomcat-8.0.20  /usr/share/tomcat8
-     - name:  tomcat8ユーザを追加
-       action: command useradd -M -d /usr/share/tomcat8 tomcat8
-     - name:  tomcat8のオーナー変更
-       action: command chown -R tomcat8. /usr/share/tomcat8
+    
+     - name:  tomcat8ユーザー作成 
+       user: name=tomcat8 createhome="yes" state="present"
+     - name: /usr/share/tomcat8ディレクトリをtomcat8オーナーに変更
+       file: state=directory owner="tomcat8" group="tomcat8" path=/usr/share/tomcat8 recurse="yes"
+     
+     - name: 起動スクリプトを作成
+       template: src=../files/tomcat8.sh  dest=/etc/init.d/tomcat8 owner=tomcat8 mode=0755
+    
