@@ -39,7 +39,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.inventory_path = "hosts"
      end
      dbm.vm.provider "virtualbox" do |v|
-         v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
+         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
+     end
+  end
+
+  config.vm.define :dbs02 do |dbs|
+     dbs.vm.box = "centos6.5"
+     dbs.vm.network :private_network, ip:"192.168.30.11"
+     dbs.ssh.insert_key=false
+     dbs.vm.provision :ansible do |ansible|
+       ansible.playbook = "../Playbook/mysql.yml"
+        ansible.extra_vars = {
+          hosts: "dbs02",
+          user: "vagrant"
+        }
+        ansible.inventory_path = "hosts"
+     end
+     dbs.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
      end
   end
  

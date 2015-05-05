@@ -1,0 +1,44 @@
+[mysqld]
+basedir = /var/lib/mysql
+datadir = /var/lib/mysql
+port = 3307
+socket = /var/lib/mysql/mysql.sock
+
+# -------------------
+#     Repl
+# -------------------
+log-bin = mysql-bin
+#master-host=127.0.0.1
+#master-user=repl
+#master-password=repl
+#master-port=3306
+#log_slave_updates
+server_id = 2
+read_only
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+[mysql]
+auto-rehash
+
+# ---------------
+#      Log
+# ---------------
+log_output = FILE
+log_warnings = 1
+general_log = 0
+general_log_file = /var/log/mysql/query.log
+log-slow-admin-statements = 1
+log-queries-not-using-indexes = 1
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow.log
+long_query_time = 0.5
+expire_logs_days = 14
+
+[mysql]
+default-character-set = utf8
+
+[client]
+default-character-set = utf8
+port   = 3306
+socket = /var/lib/mysql/mysql.sock
