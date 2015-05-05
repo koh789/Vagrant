@@ -17,10 +17,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           user: "vagrant"
         }
         ansible.inventory_path = "hosts"
-      end
+     end
      web.vm.provider "virtualbox" do |v|
          v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
      end
+     web.vm.synced_folder "~/git/personal_server/target",  "/usr/share/tomcat8/webapps",
+         type: "rsync",
+         rsync__exclude: ["maven-archiver", "maven-status", "generated-sources", "classes", "personal"]
   end
   
   config.vm.define :dbm01 do |dbm|
