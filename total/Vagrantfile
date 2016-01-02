@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      web.vm.provider "virtualbox" do |v|
          v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
      end
-     web.vm.synced_folder "~/git/personal_server/target",  "/usr/share/tomcat8/webapps",
+     web.vm.synced_folder "~/git/personal-server/target",  "/usr/share/tomcat8/webapps",
          type: "rsync",
          rsync__exclude: ["maven-archiver", "maven-status", "generated-sources", "classes", "personal"]
   end
@@ -31,15 +31,49 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      dbm.vm.network :private_network, ip:"192.168.30.10"
      dbm.ssh.insert_key=false
      dbm.vm.provision :ansible do |ansible|
-        ansible.playbook = "../Playbook/mysql.yml"
+       ansible.playbook = "../Playbook/mysql.yml"
         ansible.extra_vars = {
           hosts: "dbm01",
           user: "vagrant"
         }
         ansible.inventory_path = "hosts"
-      end
+     end
      dbm.vm.provider "virtualbox" do |v|
-         v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
+         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
+     end
+  end
+
+  config.vm.define :dbs02 do |dbs|
+     dbs.vm.box = "centos6.5"
+     dbs.vm.network :private_network, ip:"192.168.30.11"
+     dbs.ssh.insert_key=false
+     dbs.vm.provision :ansible do |ansible|
+       ansible.playbook = "../Playbook/mysql.yml"
+        ansible.extra_vars = {
+          hosts: "dbs02",
+          user: "vagrant"
+        }
+        ansible.inventory_path = "hosts"
+     end
+     dbs.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
+     end
+  end
+ 
+  config.vm.define :mem01 do |mem|
+     mem.vm.box = "centos6.5"
+     mem.vm.network :private_network, ip:"192.168.40.10"
+     mem.ssh.insert_key=false
+     mem.vm.provision :ansible do |ansible|
+       ansible.playbook = "../Playbook/memcached.yml"
+        ansible.extra_vars = {
+          hosts: "mem01",
+          user: "vagrant"
+        }
+        ansible.inventory_path = "hosts"
+     end
+     mem.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
      end
   end
 end

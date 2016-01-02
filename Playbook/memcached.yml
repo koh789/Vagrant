@@ -4,5 +4,5 @@
   tasks:
      - include: ./roles/common/tasks/setup.yml 
      - include: ./roles/memcached/tasks/memcached.yml
-     - name: start memcached
-       
+     - name: memcached起動&自動起動on
+       service: name=memcached enabled="yes" state=started 
