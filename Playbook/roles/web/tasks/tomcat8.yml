@@ -1,9 +1,9 @@
      - include: ../../common/tasks/jdk1.8.yml
 
      - name: download tomcat8
-       get_url: dest=/home/vagrant/ url=http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v8.0.21/bin/apache-tomcat-8.0.21.tar.gz
+       get_url: dest=/home/vagrant/ url=http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz
      - name: tar tomcat8
-       action: command tar zxvf apache-tomcat-8.0.21.tar.gz
+       action: command tar zxvf apache-tomcat-8.0.30.tar.gz
     
      - stat: path=/usr/share/tomcat8/  
        register: tomcat_dir_result
@@ -12,7 +12,7 @@
        when: tomcat_dir_result.stat.exists
 
      - name:  mv tomcat8  /usr/share/tomcat8
-       action: command  sudo mv -f /home/vagrant/apache-tomcat-8.0.21  /usr/share/tomcat8
+       action: command  sudo mv -f /home/vagrant/apache-tomcat-8.0.30  /usr/share/tomcat8
     
      - name:  tomcat8ユーザー作成 
        user: name=tomcat8 createhome="yes" state="present"
