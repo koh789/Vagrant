@@ -1,4 +1,4 @@
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-28.b13.el6_6.x86_64
+export JAVA_HOME=/usr/lib/jvm/java
 export JAVA_OPTS="-Dfile.encoding=UTF-8 \
   -Dnet.sf.ehcache.skipUpdateCheck=true \
   -XX:+UseConcMarkSweepGC \

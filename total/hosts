@@ -1,7 +1,9 @@
-web01 ansible_ssh_host=192.168.20.10  ansible_ssh_private_key_file=./insecure_private_key
+psweb01 ansible_ssh_host=192.168.20.10  ansible_ssh_private_key_file=./insecure_private_key
 
-dbm01 ansible_ssh_host=192.168.30.10  ansible_ssh_private_key_file=./insecure_private_key
+psdbm01 ansible_ssh_host=192.168.30.10  ansible_ssh_private_key_file=./insecure_private_key
 
-dbs02 ansible_ssh_host=192.168.30.11  ansible_ssh_private_key_file=./insecure_private_key
+psdbs02 ansible_ssh_host=192.168.30.11  ansible_ssh_private_key_file=./insecure_private_key
 
-mem01 ansible_ssh_host=192.168.40.10  ansible_ssh_private_key_file=./insecure_private_key
+psmem01 ansible_ssh_host=192.168.40.10  ansible_ssh_private_key_file=./insecure_private_key
+
+psredis01 ansible_ssh_host=192.168.50.10  ansible_ssh_private_key_file=./insecure_private_key
