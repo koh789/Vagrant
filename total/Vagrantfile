@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :psweb01 do |web|
-     web.vm.box = "centos7"
+     web.vm.box = "centos6.5"
      web.vm.network :private_network, ip:"192.168.20.10"
      web.ssh.insert_key=false
      web.vm.provision :ansible do |ansible|
@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   config.vm.define :psdbm01 do |dbm|
-     dbm.vm.box = "centos7"
+     dbm.vm.box = "centos6.5"
      dbm.vm.network :private_network, ip:"192.168.30.10"
      dbm.ssh.insert_key=false
      dbm.vm.provision :ansible do |ansible|
@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :psdbs02 do |dbs|
-     dbs.vm.box = "centos7"
+     dbs.vm.box = "centos6.5"
      dbs.vm.network :private_network, ip:"192.168.30.11"
      dbs.ssh.insert_key=false
      dbs.vm.provision :ansible do |ansible|
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
  config.vm.define :psredis01 do |redis|
-     redis.vm.box = "centos7"
+     redis.vm.box = "centos6.5"
      redis.vm.network :private_network, ip:"192.168.50.10"
      redis.ssh.insert_key=false
      redis.vm.provider "virtualbox" do |v|
@@ -70,7 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
  
   config.vm.define :psmem01 do |mem|
-     mem.vm.box = "centos7"
+     mem.vm.box = "centos6.5"
      mem.vm.network :private_network, ip:"192.168.40.10"
      mem.ssh.insert_key=false
      mem.vm.provision :ansible do |ansible|
