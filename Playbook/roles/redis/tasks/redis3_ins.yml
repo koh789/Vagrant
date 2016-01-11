@@ -1,8 +1,9 @@
-- name: epel-release-6-8.noarch.rpm等を取得します。
+- name: redis用レポジトリを取得します。
   yum: name={{item}} state=installed
   with_items:
-   - http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-   - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-   - http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+   - http://dl.fedoraproject.org/pub/epel/6/x86_64/libunwind-1.1-3.el6.x86_64.rpm
+   - http://dl.fedoraproject.org/pub/epel/6/x86_64/libunwind-devel-1.1-3.el6.x86_64.rpm
+   - http://dl.fedoraproject.org/pub/epel/6/x86_64/gperftools-libs-2.0-11.el6.3.x86_64.rpm
+   - http://rpms.famillecollet.com/enterprise/6/remi/x86_64/redis-3.0.6-1.el6.remi.x86_64.rpm
 - name: redis3.0をインストールします。
-  yum: name=redis enablerepo:remi,remi-test,epel  state=present
+  yum: name=redis state=latest
