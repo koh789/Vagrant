@@ -1,0 +1,7 @@
+- hosts: '{{hosts}}'
+  user: '{{user}}'
+  sudo: yes
+  tasks:
+     - include: ./roles/common/tasks/setup.yml
+     - include: ./roles/redis/tasks/redis3_ins.yml
+     - service: name=redis-server enabled="yes" state=started

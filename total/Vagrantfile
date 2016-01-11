@@ -60,15 +60,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      end
   end
   
- config.vm.define :psredis01 do |redis|
-     redis.vm.box = "centos6.5"
-     redis.vm.network :private_network, ip:"192.168.50.10"
-     redis.ssh.insert_key=false
-     redis.vm.provider "virtualbox" do |v|
-         v.customize ["modifyvm", :id, "--memory", 1024, "--cpus", "1", "--ioapic", "off"]
-     end
-  end
- 
   config.vm.define :psmem01 do |mem|
      mem.vm.box = "centos6.5"
      mem.vm.network :private_network, ip:"192.168.40.10"
@@ -83,6 +74,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      end
      mem.vm.provider "virtualbox" do |v|
          v.customize ["modifyvm", :id, "--memory", 512, "--cpus", "1", "--ioapic", "off"]
+     end
+  end
+  config.vm.define :psredis01 do |redis|
+     redis.vm.box = "centos6.5"
+     redis.vm.network :private_network, ip:"192.168.50.10"
+     redis.ssh.insert_key=false
+     redis.vm.provision :ansible do |ansible|
+       ansible.playbook = "../Playbook/redis.yml"
+        ansible.extra_vars = {
+          hosts: "psredis01",
+          user: "vagrant"
+        }
+        ansible.inventory_path = "hosts"
+     end
+     redis.vm.provider "virtualbox" do |v|
+         v.customize ["modifyvm", :id, "--memory", 1536, "--cpus", "1", "--ioapic", "off"]
      end
   end
 end

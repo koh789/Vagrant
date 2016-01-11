@@ -1,0 +1,8 @@
+- name: epel-release-6-8.noarch.rpm等を取得します。
+  yum: name={{item}} state=installed
+  with_items:
+   - http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+   - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+   - http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+- name: redis3.0をインストールします。
+  yum: name=redis enablerepo:remi,remi-test,epel  state=present
